@@ -14,7 +14,6 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
     }
   }
   Stage.init( {stage_id: {
-    allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     timestamps: false,

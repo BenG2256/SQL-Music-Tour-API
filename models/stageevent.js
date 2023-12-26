@@ -15,7 +15,6 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
   }
   StageEvent.init({
     stage_event_id: {
-      allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       timestamps: false,

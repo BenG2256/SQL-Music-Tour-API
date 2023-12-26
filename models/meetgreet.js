@@ -15,7 +15,6 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
   }
   MeetGreet.init({
     meet_greet_id: {
-      allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       timestamps: false,

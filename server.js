@@ -8,12 +8,17 @@ require('dotenv').config()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+//controllers 
+const bandsController = require('./controllers/bands_controller')
+app.use('/bands', bandsController)
+
 // ROOT
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'Welcome to the Tour API'
     })
 })
+
 
 // LISTEN
 app.listen(process.env.PORT, () => {

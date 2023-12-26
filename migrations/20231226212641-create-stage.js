@@ -4,7 +4,6 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('stages', {
       stage_id: {
-        allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         timestamps: false,

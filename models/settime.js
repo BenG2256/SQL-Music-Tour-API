@@ -15,7 +15,6 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
   }
   SetTime.init({
     set_time_id: {
-      allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       timestamps: false,
