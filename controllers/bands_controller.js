@@ -7,7 +7,12 @@ const { Band } = db
 //find all bands 
 bands.get('/', async(req,res) => {
     try{
-        const foundBands = await Band.findAll()
+        const foundBands = await Band.findAll({
+            order: [ [ 'available_start_time', 'ASC' ] ],
+            where: {
+                name: { [Op.like]: `%${req.query.name ? req.query.name : ''}%`}
+            }
+        })
         res.status(200).json(foundBands)
     }
     catch (error){
