@@ -1,5 +1,5 @@
 //dependencies 
-
+const { Op } = require('sequelize');
 const events = require('express').Router()
 const db = require('../models')
 const { Event } = db
@@ -8,15 +8,17 @@ const { Event } = db
 events.get('/', async(req,res) => {
     try{
         const foundEvents = await Event.findAll({
-            order: [ [ 'date', 'ASC' ] ],
-            where: {
-                name: { [Op.like]: `%${req.query.name ? req.query.name : ''}%`}
-            }
-        })
-        res.status(200).json(foundEvents)
+           order: [['date', 'ASC']],
+           where: {
+              name: {
+                   [Op.like]: `%${req.query.name ? req.query.name : ''}%`,
+             },
+           },
+        });
+        res.status(200).json(foundEvents);
     }
     catch (error){
-        res.status(500).json(error)
+        res.status(500).json(error);
     }
 })
 
@@ -24,7 +26,7 @@ events.get('/', async(req,res) => {
 events.get('/:id', async(req,res) => {
     try{
         const foundEvents = await Event.findOne({
-            where: { events_id: req.params.id}
+            where: { event_id: req.params.id}
         })
         res.status(200).json(foundEvents)
     } catch (error){
@@ -37,7 +39,7 @@ events.post('/', async (req,res) => {
     try {
         const newEvents = await Event.create(req.body)
         res.status(200).json({
-            message: 'Successfully inserted a new events',
+            message: 'Successfully inserted a new event',
             data: newEvents
         })
     } catch (err) {
@@ -49,7 +51,7 @@ events.put('/:id', async (req,res) => {
     try{
         const updatedEvents = await Event.update(req.body, {
             where: {
-                events_id: req.params.id
+                event_id: req.params.id
             }
         })
         res.status(200).json({
@@ -64,7 +66,7 @@ events.delete('/:id', async (req, res) => {
     try {
         const deletedEvents = await Event.destroy({
             where: {
-                events_id: req.params.id
+                event_id: req.params.id
             }
         })
         res.status(200).json({

@@ -13,25 +13,23 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
       // define association here
     }
   }
-  Event.init({event_id: {
+  Event.init(
+    {event_id: {
     autoIncrement: true,
     primaryKey: true,
-    timestamps: false,
     type: Sequelize.INTEGER
   },
   name: {
-    timestamps: false,
     allowNull: false,
     type: Sequelize.STRING
   },
   date: {
-    timestamps: false,
     allowNull: false,
     type: Sequelize.DATE
   }},{
     sequelize,
     modelName: 'Event',
-    tableName: 'event',
+    tableName: 'events',
     timestamps: false
   })
   return Event;
