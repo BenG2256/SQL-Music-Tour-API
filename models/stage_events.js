@@ -17,22 +17,19 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
     stage_event_id: {
       autoIncrement: true,
       primaryKey: true,
-      timestamps: false,
       type: Sequelize.INTEGER
     },
-    eventId: {
+    event_id: {
       allowNull: false,
-      timestamps: false,
       type: Sequelize.INTEGER
     },
-    stageId: {
+    stage_id: {
       allowNull: false,
-      timestamps: false,
       type: Sequelize.INTEGER
     }}, {
       sequelize,
       modelName: 'StageEvent',
-      tableName: 'stage_event',
+      tableName: 'stage_events',
       timestamps: false
   });
   return StageEvent;

@@ -2,7 +2,7 @@
 const { Op } = require('sequelize');
 const stages = require('express').Router()
 const db = require('../models')
-const { Stage } = db
+const { Stage, Event } = db
 
 //find all stagess 
 stages.get('/', async(req,res) => {
@@ -20,13 +20,21 @@ stages.get('/', async(req,res) => {
 })
 
 //find specific stages 
-stages.get('/:id', async(req,res) => {
-    try{
-        const foundStages = await Stage.findOne({
-            where: { stages_id: req.params.id}
+stages.get('/:name', async (req, res) => {
+    try {
+        const foundStage = await Stage.findOne({
+            where: { stage_name: req.params.name },
+            include:{ 
+                model: Event, 
+                as: "events",
+                through: { attributes: [] }
+            },
+            order: [
+                [{ model: Event, as: "events" }, 'date', 'ASC'],
+            ]
         })
-        res.status(200).json(foundStages)
-    } catch (error){
+        res.status(200).json(foundStage)
+    } catch (error) {
         res.status(500).json(error)
     }
 })
